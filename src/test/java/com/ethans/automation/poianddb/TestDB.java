@@ -1,6 +1,7 @@
 package com.ethans.automation.poianddb;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TestDB {
 
@@ -10,7 +11,10 @@ public class TestDB {
 		map = util.readDataSheetAsMap();
 		DBUtil.createDataBase();
 		DBUtil.createTable();
-		
+		for(Map.Entry<String, Employee> entry : map.entrySet()){
+			DBUtil.insertRecord(entry.getKey(), entry.getValue().getName(), entry.getValue().getAge(), entry.getValue().getGender(), entry.getValue().getRole());
+		}
+		DBUtil.clean();
 	}
 
 }

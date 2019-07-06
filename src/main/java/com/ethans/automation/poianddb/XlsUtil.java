@@ -31,7 +31,7 @@ public class XlsUtil {
 
 		FileInputStream fis1, fis2;
 		try {
-
+			System.out.println("Reading Data from source...");
 			fis1 = new FileInputStream(new File(".//Config.properties"));
 			Properties prop = new Properties();
 			prop.load(fis1);
@@ -40,11 +40,12 @@ public class XlsUtil {
 			XSSFSheet spreadsheet = workbook.getSheetAt(0);
 			Iterator<Row> rowIterator = spreadsheet.iterator();
 			XSSFRow header = (XSSFRow) rowIterator.next();
-
+			System.out.println("Storing Data in Map....");
 			while (rowIterator.hasNext()) {
 				row = (XSSFRow) rowIterator.next();
 				Iterator<Cell> cellIterator = row.cellIterator();
 				emp = new Employee();
+				
 				while (cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
 					
@@ -70,10 +71,11 @@ public class XlsUtil {
 					}
 
 				}
+				
 				map.put(emp.getId(), emp);
 
 			}
-
+			System.out.println("Reading Data from source and storing in map completed successfully");
 			fis1.close();
 			fis2.close();
 
